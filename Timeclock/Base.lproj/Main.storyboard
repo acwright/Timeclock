@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9059" systemVersion="15C31f" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Timeclock" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="E3E-27-XP6">
+                                <rect key="frame" x="702" y="89" width="516" height="70"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                <segments>
+                                    <segment title="Clocked In"/>
+                                    <segment title="Clocked Out"/>
+                                </segments>
+                                <connections>
+                                    <action selector="filterChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="WkA-gC-o4w"/>
+                                </connections>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bp9-Ge-zMy">
+                                <rect key="frame" x="92" y="198" width="1736" height="810"/>
+                                <animations/>
+                                <connections>
+                                    <segue destination="Mj9-jw-eu9" kind="embed" identifier="Embed" id="ddn-lp-gKx"/>
+                                </connections>
+                            </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gameroom Timeclock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xgo-Ut-3kF">
+                                <rect key="frame" x="762" y="20" width="396" height="49"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Bp9-Ge-zMy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="72" id="LAJ-or-IGt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bp9-Ge-zMy" secondAttribute="trailing" constant="72" id="ciY-jY-2Vw"/>
+                            <constraint firstItem="E3E-27-XP6" firstAttribute="top" secondItem="Xgo-Ut-3kF" secondAttribute="bottom" constant="20" id="dIT-ul-wGF"/>
+                            <constraint firstItem="Bp9-Ge-zMy" firstAttribute="top" secondItem="E3E-27-XP6" secondAttribute="bottom" constant="40" id="daC-e0-4Ij"/>
+                            <constraint firstItem="Xgo-Ut-3kF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fzH-ts-Pqt"/>
+                            <constraint firstItem="Xgo-Ut-3kF" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" symbolic="YES" id="kLs-Cf-4HQ"/>
+                            <constraint firstItem="E3E-27-XP6" firstAttribute="centerX" secondItem="Xgo-Ut-3kF" secondAttribute="centerX" id="nYE-XI-koV"/>
+                            <constraint firstItem="Bp9-Ge-zMy" firstAttribute="centerX" secondItem="E3E-27-XP6" secondAttribute="centerX" id="v8U-jw-P7L"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Bp9-Ge-zMy" secondAttribute="bottom" constant="72" id="zVG-4v-AgT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="filterControl" destination="E3E-27-XP6" id="Dtz-ed-tvv"/>
+                        <outlet property="mainLabel" destination="Xgo-Ut-3kF" id="ea9-pH-Wj1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="440" y="350"/>
+        </scene>
+        <!--User Table View Controller-->
+        <scene sceneID="1Sv-fA-m4d">
+            <objects>
+                <tableViewController id="Mj9-jw-eu9" customClass="UserTableViewController" customModule="Timeclock" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="40" sectionFooterHeight="40" id="Pil-Kp-pfs">
+                        <rect key="frame" x="0.0" y="0.0" width="1736" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" textLabel="XEF-XB-sEg" detailTextLabel="OBg-VP-Dc8" style="IBUITableViewCellStyleSubtitle" id="q3C-eY-1mA">
+                                <rect key="frame" x="0.0" y="54" width="1736" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q3C-eY-1mA" id="DCa-pn-1Z4">
+                                    <rect key="frame" x="0.0" y="0.0" width="1720" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XEF-XB-sEg">
+                                            <rect key="frame" x="20" y="4" width="72" height="46"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OBg-VP-Dc8">
+                                            <rect key="frame" x="20" y="50" width="128" height="46"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Mj9-jw-eu9" id="Koa-Se-RLZ"/>
+                            <outlet property="delegate" destination="Mj9-jw-eu9" id="J38-6v-Xmc"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qMA-sS-Jju" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2469" y="350"/>
+        </scene>
+    </scenes>
+</document>
