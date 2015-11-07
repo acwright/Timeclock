@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol UserDataSourceDelegate {
     func userDataSourceDidReloadData()
@@ -38,13 +39,42 @@ class UserDataSource {
         self.usersClockedIn = []
         self.usersClockedOut = []
         
-        let user1 = User(firstName: "Aaron", lastName: "Wright", email: "acwrightdesign@gmail.com", username: "acwrightdesign")
-        let user2 = User(firstName: "Joe", lastName: "Example", email: "example@example.com", username: "example")
+        let headers = [
+            "Authorization": "Basic eDplYTNkMjQ3MGU2NWIwMTMwZjU0OTNlMWVkYmZmNDQ3ZQ=="
+        ]
         
-        self.usersClockedIn = [user1, user2]
+        Alamofire.request(.GET, "http://gameroom.swapzapp.com/api/users", headers: headers, parameters: ["clocked_in": true, "per_page": 0]).responseJSON { response in
+            if let JSON = response.result.value {
+                
+                let users = (JSON.valueForKey("users") as! [NSDictionary]).filter({
+                    ($0["active"] as! Bool) == true
+                }).map {
+                    User(firstName: $0["first_name"] as! String, lastName: $0["last_name"] as! String, email: $0["email"] as! String, username: $0["username"] as! String)
+                }
+
+                self.usersClockedIn = users
+                
+                if let delegate = self.delegate {
+                    delegate.userDataSourceDidReloadData()
+                }
+            }
+        }
         
-        if let delegate = self.delegate {
-            delegate.userDataSourceDidReloadData()
+        Alamofire.request(.GET, "http://gameroom.swapzapp.com/api/users", headers: headers, parameters: ["clocked_out": true, "per_page": 0]).responseJSON { response in
+            if let JSON = response.result.value {
+                
+                let users = (JSON.valueForKey("users") as! [NSDictionary]).filter({
+                    ($0["active"] as! Bool) == true
+                }).map {
+                    User(firstName: $0["first_name"] as! String, lastName: $0["last_name"] as! String, email: $0["email"] as! String, username: $0["username"] as! String)
+                }
+
+                self.usersClockedOut = users
+                
+                if let delegate = self.delegate {
+                    delegate.userDataSourceDidReloadData()
+                }
+            }
         }
     }
     
