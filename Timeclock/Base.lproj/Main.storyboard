@@ -18,17 +18,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bp9-Ge-zMy">
-                                <rect key="frame" x="92" y="198" width="1736" height="810"/>
+                                <rect key="frame" x="92" y="259" width="1736" height="749"/>
                                 <animations/>
                                 <connections>
                                     <segue destination="Mj9-jw-eu9" kind="embed" identifier="Embed" id="ddn-lp-gKx"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2Q-a4-h4e">
-                                <rect key="frame" x="638" y="88" width="292" height="86"/>
+                                <rect key="frame" x="1184" y="88" width="292" height="86"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="292" id="uQE-Xw-3tP"/>
+                                    <constraint firstAttribute="width" constant="292" id="dVd-g0-fR1"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="Clocked In"/>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lK-ee-ZSG">
-                                <rect key="frame" x="990" y="88" width="292" height="86"/>
+                                <rect key="frame" x="1536" y="88" width="292" height="86"/>
                                 <animations/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="Clocked Out"/>
@@ -45,10 +45,15 @@
                                     <action selector="showClockedOut:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="BCp-Oo-pBP"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timeclock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xgo-Ut-3kF">
-                                <rect key="frame" x="867" y="20" width="186" height="49"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9KY-ik-RQU">
+                                <rect key="frame" x="1063" y="99" width="64" height="64"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timeclock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xgo-Ut-3kF">
+                                <rect key="frame" x="92" y="100" width="230" height="61"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="51"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -56,20 +61,23 @@
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="y2Q-a4-h4e" firstAttribute="baseline" secondItem="0lK-ee-ZSG" secondAttribute="baseline" id="Ez9-8H-VOn"/>
-                            <constraint firstItem="Bp9-Ge-zMy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="72" id="LAJ-or-IGt"/>
-                            <constraint firstItem="y2Q-a4-h4e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="638" id="chX-XC-Yzc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Bp9-Ge-zMy" secondAttribute="trailing" constant="72" id="ciY-jY-2Vw"/>
-                            <constraint firstItem="0lK-ee-ZSG" firstAttribute="leading" secondItem="y2Q-a4-h4e" secondAttribute="trailing" constant="60" id="fB6-Lc-fdG"/>
-                            <constraint firstItem="Xgo-Ut-3kF" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" symbolic="YES" id="fxE-AZ-rTk"/>
-                            <constraint firstItem="Bp9-Ge-zMy" firstAttribute="top" secondItem="y2Q-a4-h4e" secondAttribute="bottom" constant="24" id="jOz-Pb-k3r"/>
-                            <constraint firstItem="0lK-ee-ZSG" firstAttribute="top" secondItem="Xgo-Ut-3kF" secondAttribute="bottom" constant="19" id="xAW-V5-HPJ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Bp9-Ge-zMy" secondAttribute="bottom" constant="72" id="zVG-4v-AgT"/>
-                            <constraint firstItem="Xgo-Ut-3kF" firstAttribute="centerX" secondItem="Bp9-Ge-zMy" secondAttribute="centerX" id="zcC-HT-4qG"/>
+                            <constraint firstItem="0lK-ee-ZSG" firstAttribute="baseline" secondItem="y2Q-a4-h4e" secondAttribute="baseline" id="2vF-8N-cZ8"/>
+                            <constraint firstItem="0lK-ee-ZSG" firstAttribute="leading" secondItem="y2Q-a4-h4e" secondAttribute="trailing" constant="60" id="Ary-sY-VQx"/>
+                            <constraint firstItem="9KY-ik-RQU" firstAttribute="centerY" secondItem="y2Q-a4-h4e" secondAttribute="centerY" id="Did-iw-8jL"/>
+                            <constraint firstItem="Xgo-Ut-3kF" firstAttribute="centerY" secondItem="9KY-ik-RQU" secondAttribute="centerY" id="Mqw-hQ-ymQ"/>
+                            <constraint firstItem="Xgo-Ut-3kF" firstAttribute="leading" secondItem="Bp9-Ge-zMy" secondAttribute="leading" id="awm-yL-owP"/>
+                            <constraint firstItem="y2Q-a4-h4e" firstAttribute="leading" secondItem="9KY-ik-RQU" secondAttribute="trailing" constant="57" id="b9P-00-aDI"/>
+                            <constraint firstItem="Xgo-Ut-3kF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="czb-lF-hjQ"/>
+                            <constraint firstItem="Xgo-Ut-3kF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="72" id="gP3-jb-5Og"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Bp9-Ge-zMy" secondAttribute="bottom" constant="72" id="la5-sp-MxX"/>
+                            <constraint firstItem="Bp9-Ge-zMy" firstAttribute="trailing" secondItem="0lK-ee-ZSG" secondAttribute="trailing" id="oP9-iR-pO2"/>
+                            <constraint firstItem="Bp9-Ge-zMy" firstAttribute="top" secondItem="y2Q-a4-h4e" secondAttribute="bottom" constant="85" id="wkq-Q3-BBD"/>
+                            <constraint firstItem="Bp9-Ge-zMy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ybn-eb-kn7"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="inButton" destination="y2Q-a4-h4e" id="ywJ-wJ-uan"/>
+                        <outlet property="indicatorView" destination="9KY-ik-RQU" id="P75-IN-B95"/>
                         <outlet property="mainLabel" destination="Xgo-Ut-3kF" id="ea9-pH-Wj1"/>
                         <outlet property="outButton" destination="0lK-ee-ZSG" id="v3E-RF-3Eh"/>
                     </connections>
@@ -83,12 +91,12 @@
             <objects>
                 <tableViewController id="Mj9-jw-eu9" customClass="UserTableViewController" customModule="Timeclock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="40" sectionFooterHeight="40" id="Pil-Kp-pfs">
-                        <rect key="frame" x="0.0" y="0.0" width="1736" height="810"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1736" height="749"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" textLabel="XEF-XB-sEg" detailTextLabel="OBg-VP-Dc8" style="IBUITableViewCellStyleSubtitle" id="q3C-eY-1mA">
-                                <rect key="frame" x="0.0" y="54" width="1696" height="100"/>
+                                <rect key="frame" x="0.0" y="54" width="1736" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q3C-eY-1mA" id="DCa-pn-1Z4">
                                     <rect key="frame" x="0.0" y="0.0" width="1720" height="100"/>

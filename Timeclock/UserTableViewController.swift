@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol UserTableViewControllerDelegate {
+    func userTableViewDidBeginReloadingData()
+    func userTableViewDidFinishReloadingData()
+}
+
 class UserTableViewController: UITableViewController, UserDataSourceDelegate {
     
     enum Filter {
@@ -17,10 +22,13 @@ class UserTableViewController: UITableViewController, UserDataSourceDelegate {
     
     let userDataSource: UserDataSource = UserDataSource()
     
+    var delegate: UserTableViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.userDataSource.delegate = self
+        self.filter(filter: Filter.ClockedIn)
     }
     
     func filter(filter filter: Filter) {
@@ -34,8 +42,36 @@ class UserTableViewController: UITableViewController, UserDataSourceDelegate {
     
     // MARK; - UserDataSourceDelegate
     
-    func userDataSourceDidReloadData() {
-        self.tableView.reloadData()
+    func userDataSourceDidBeginReloadingData() {
+        if let delegate = self.delegate {
+            delegate.userTableViewDidBeginReloadingData()
+        }
+    }
+    
+    func userDataSourceDidFinishReloadingInData() {
+        switch self.userDataSource.filter {
+        case UserDataSource.Filter.ClockedIn:
+            self.tableView.reloadData()
+        case UserDataSource.Filter.ClockedOut:
+            break
+        }
+        
+        if let delegate = self.delegate {
+            delegate.userTableViewDidFinishReloadingData()
+        }
+    }
+    
+    func userDataSourceDidFinishReloadingOutData() {
+        switch self.userDataSource.filter {
+        case UserDataSource.Filter.ClockedIn:
+            break
+        case UserDataSource.Filter.ClockedOut:
+            self.tableView.reloadData()
+        }
+        
+        if let delegate = self.delegate {
+            delegate.userTableViewDidFinishReloadingData()
+        }
     }
     
     // MARK: - UITableViewDataSource
@@ -61,9 +97,13 @@ class UserTableViewController: UITableViewController, UserDataSourceDelegate {
         
         switch self.userDataSource.filter {
         case UserDataSource.Filter.ClockedIn:
-            cell.detailTextLabel?.text = formatter.stringFromDate(user.lastIn!)
+            if let lastIn = user.lastIn {
+                cell.detailTextLabel?.text = formatter.stringFromDate(lastIn)
+            }
         case UserDataSource.Filter.ClockedOut:
-            cell.detailTextLabel?.text = formatter.stringFromDate(user.lastOut!)
+            if let lastOut = user.lastOut {
+                cell.detailTextLabel?.text = formatter.stringFromDate(lastOut)
+            }
         }
     
         return cell

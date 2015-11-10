@@ -10,7 +10,9 @@ import Foundation
 import Alamofire
 
 protocol UserDataSourceDelegate {
-    func userDataSourceDidReloadData()
+    func userDataSourceDidBeginReloadingData()
+    func userDataSourceDidFinishReloadingInData()
+    func userDataSourceDidFinishReloadingOutData()
 }
 
 class UserDataSource {
@@ -31,11 +33,11 @@ class UserDataSource {
     private var usersClockedIn: [User] = []
     private var usersClockedOut: [User] = []
     
-    init() {
-        self.loadData()
-    }
-    
     func loadData() {
+        if let delegate = self.delegate {
+            delegate.userDataSourceDidBeginReloadingData()
+        }
+        
         self.usersClockedIn = []
         self.usersClockedOut = []
         
@@ -55,7 +57,7 @@ class UserDataSource {
                 self.usersClockedIn = users
                 
                 if let delegate = self.delegate {
-                    delegate.userDataSourceDidReloadData()
+                    delegate.userDataSourceDidFinishReloadingInData()
                 }
             }
         }
@@ -72,7 +74,7 @@ class UserDataSource {
                 self.usersClockedOut = users
                 
                 if let delegate = self.delegate {
-                    delegate.userDataSourceDidReloadData()
+                    delegate.userDataSourceDidFinishReloadingOutData()
                 }
             }
         }
