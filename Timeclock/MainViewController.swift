@@ -12,24 +12,21 @@ class MainViewController: UIViewController {
     
     private var userTableViewController: UserTableViewController!
 
-    @IBOutlet weak var filterControl: UISegmentedControl!
+    @IBOutlet weak var inButton: UIButton!
+    @IBOutlet weak var outButton: UIButton!
     @IBOutlet weak var mainLabel: UILabel!
-    @IBOutlet weak var tableView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
-
-    @IBAction func filterChanged(sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            userTableViewController.filter(filter: UserTableViewController.Filter.ClockedIn)
-        case 1:
-            userTableViewController.filter(filter: UserTableViewController.Filter.ClockedOut)
-        default:
-            userTableViewController.filter(filter: UserTableViewController.Filter.ClockedIn)
-        }
+    
+    @IBAction func showClockedIn(sender: UIButton) {
+        userTableViewController.filter(filter: UserTableViewController.Filter.ClockedIn)
+    }
+    
+    @IBAction func showClockedOut(sender: UIButton) {
+        userTableViewController.filter(filter: UserTableViewController.Filter.ClockedOut)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

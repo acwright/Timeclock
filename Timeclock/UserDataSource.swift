@@ -49,7 +49,7 @@ class UserDataSource {
                 let users = (JSON.valueForKey("users") as! [NSDictionary]).filter({
                     ($0["active"] as! Bool) == true
                 }).map {
-                    User(firstName: $0["first_name"] as! String, lastName: $0["last_name"] as! String, email: $0["email"] as! String, username: $0["username"] as! String)
+                    User(firstName: $0["first_name"] as! String, lastName: $0["last_name"] as! String, email: $0["email"] as! String, username: $0["username"] as! String, lastIn: $0["last_in"] as! String, lastOut: $0["last_out"] as! String)
                 }
 
                 self.usersClockedIn = users
@@ -66,7 +66,7 @@ class UserDataSource {
                 let users = (JSON.valueForKey("users") as! [NSDictionary]).filter({
                     ($0["active"] as! Bool) == true
                 }).map {
-                    User(firstName: $0["first_name"] as! String, lastName: $0["last_name"] as! String, email: $0["email"] as! String, username: $0["username"] as! String)
+                    User(firstName: $0["first_name"] as! String, lastName: $0["last_name"] as! String, email: $0["email"] as! String, username: $0["username"] as! String, lastIn: $0["last_in"] as! String, lastOut: $0["last_out"] as! String)
                 }
 
                 self.usersClockedOut = users

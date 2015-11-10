@@ -13,6 +13,8 @@ class User {
     var lastName: String
     var email: String
     var username: String
+    var lastIn: NSDate?
+    var lastOut: NSDate?
     
     var fullName: String {
         get {
@@ -20,10 +22,17 @@ class User {
         }
     }
     
-    init(firstName: String, lastName: String, email: String, username: String) {
+    init(firstName: String, lastName: String, email: String, username: String, lastIn: String, lastOut: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
         self.username = username
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
+        formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        
+        self.lastIn = formatter.dateFromString(lastIn)
+        self.lastOut = formatter.dateFromString(lastOut)
     }
 }

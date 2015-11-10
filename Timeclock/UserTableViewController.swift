@@ -54,7 +54,17 @@ class UserTableViewController: UITableViewController, UserDataSourceDelegate {
         let user = users[indexPath.row]
         
         cell.textLabel?.text = user.fullName
-        cell.detailTextLabel?.text = user.username
+        
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = NSDateFormatterStyle.FullStyle
+        formatter.timeStyle = NSDateFormatterStyle.FullStyle
+        
+        switch self.userDataSource.filter {
+        case UserDataSource.Filter.ClockedIn:
+            cell.detailTextLabel?.text = formatter.stringFromDate(user.lastIn!)
+        case UserDataSource.Filter.ClockedOut:
+            cell.detailTextLabel?.text = formatter.stringFromDate(user.lastOut!)
+        }
     
         return cell
     }
